@@ -32,6 +32,25 @@
 # Considera que al escribir """ también estamos delimitado un string, pero al hacerlo de esta manera,
 # cambios de línea que ocurran en el código se considerarán como parte del string.
 # Si no estás convencido, prueba el funcionamiento reemplazando los delimitadores por "
+def mostrar_perfil():
+    print("--------------------------------------------------")
+    print("Nombre:  ", nombre)
+    print("Edad:    ", edad, "años")
+    print("Estatura:", estatura_m, "metros y", estatura_cm, "centímetros")
+    print("Amigos:  ", num_amigos)
+    print("Genero:  ", genero)
+    print("Correo:  ", correo_electronico)
+    print("Telefono:", telefono)
+    print("Pais:    ", pais_residencia)
+    print("Ciudad   ", ciudad)
+    print("--------------------------------------------------")
+
+
+def mostar_mensaje():
+    print()
+    print("--------------------------------------------------")
+    print(nombre, "dice:", mensaje)
+    print("--------------------------------------------------")
 
 print("Bienvenido a ... ")
 print("""
@@ -97,14 +116,42 @@ print("--------------------------------------------------")
 print("Gracias por la información. Esperamos que disfrutes con Mi Red")
 print()
 
-#Finalmente, solicitamos un mensaje de prueba que sirva para publicar un estado del usuario.
-mensaje = input("Ahora vamos a publicar tu primer mensaje. ¿Qué piensas hoy? ")
-print()
-print("--------------------------------------------------")
-print(nombre, "dice:", mensaje)
-print("--------------------------------------------------")
+#Usaremos una variable bool para indicar si el usuario desea continuar
+#utilizando el programa o no
+continuar = True
+salir = True
+#Este ciclo se mantiene en ejecuciÃ³n hasta que el usuario desee salir
+while continuar:
 
-#Ahora puedes practicar solicitando más datos al usuario. Solo tienes que usar apropiadamente input() y print()
-#1. Escribe 3 solicitudes de datos al usuario, por ejemplo sexo, numero de telefono, ciudad donde vive,
-#   pais de nacimiento, direccion, etc. Guarda esos datos en variables del tipo, y finalmente escríbelos en pantalla
-#   utilizando print. Puedes agregar todas las líneas que necesites.
+    #Solicitamos opciones al usuario
+    print("1 - Escribir Mensaje")
+    print("2 - Modificar Nombre")
+    print("3 - Modificar Correo")
+    print("S - Salir de Share-It")
+    Opcion = str(input("Elije la opción"))
+
+    #Vamos a aceptar que el usuario ingrese un mensaje cuando escriban "S", "s", o nada
+    if Opcion == "1":
+        mensaje = input("Vamos a publicar un mensaje. Â¿QuÃ© piensas hoy? ")
+        mostar_mensaje()
+    elif Opcion == "2":
+        nombre = input("Dame tu nombre (actual " + nombre + "): ")
+        mostrar_perfil()
+    elif Opcion == "3":
+        correo_electronico = input("Dame tu correo (actual " + correo_electronico + ": ")
+        mostrar_perfil()
+    elif Opcion == "S":
+        print(Opcion)
+        while salir:
+            print(salir)
+            salir = input("¿Desea salir?")
+            if salir == "s" or salir == "S":
+                print("Gracias por usar Mi Red. Â¡Hasta pronto!")
+                salir = False
+                continuar = False
+    else:
+        print("Selecciona una opción valida")
+
+
+
+
