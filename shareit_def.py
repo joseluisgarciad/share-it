@@ -6,6 +6,7 @@ def mostrar_perfil(nombre,
                    estatura_m,
                    estatura_cm,
                    num_amigos,
+                   amigos,
                    genero,
                    correo_electronico,
                    telefono,
@@ -15,13 +16,28 @@ def mostrar_perfil(nombre,
     print("Nombre:  ", nombre)
     print("Edad:    ", edad, "años")
     print("Estatura:", estatura_m, "metros y", estatura_cm, "centímetros")
-    print("Amigos:  ", num_amigos)
+    print("Amigos:  ", num_amigos, " - ", amigos)
     print("Genero:  ", genero)
     print("Correo:  ", correo_electronico)
     print("Telefono:", telefono)
     print("Pais:    ", pais_residencia)
     print("Ciudad   ", ciudad)
     print("--------------------------------------------------")
+
+
+def actualizar_perfil():
+    #    nombre = actualizacion_nombre()
+    edad = actualizacion_anno()
+    (estatura_m, estatura_cm) = actualizacion_estatura()
+    num_amigos = actualizacion_amigos()
+    amigos = actualizacion_lista_amigos(num_amigos)
+    genero = actualizar_genero()
+    correo = actualizar_correo()
+    telefono = actualizar_telefono()
+    pais = actualizar_pais()
+    ciudad = actualizar_ciudad()
+
+    return edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo, telefono, pais, ciudad
 
 
 def mostar_mensaje_publico(nombre, mensaje):
@@ -43,6 +59,21 @@ def mostrar_mensaje_amigos(nombre, amigos: list, mensaje):
     print("--------------------------------------------------")
     print(nombre, "dice:", textoamigos, " ", mensaje)
     print("--------------------------------------------------")
+
+
+def actualizacion_lista_amigos(num_amigos):
+    i = 0
+    amigos = []
+
+    print("Ingresa los nombres de tu amigos o amigas: (introduce 0 cuando termines) -> ")
+    for i in range(num_amigos):
+        nombre_amigo = input()
+        if nombre_amigo == "0":
+            break
+        else:
+            amigos.append(nombre_amigo)
+
+    return amigos
 
 
 def borrarpantalla():  # Definimos la función estableciendo el nombre que queramos
@@ -83,7 +114,7 @@ def actualizacion_nombre():
 # Segunda interacción. Solicitamos el ingreso del año, y utilizamos este
 # dato para estimar la edad de la persona. ¿Por qué decimos que solo estamos "estimando" su edad?
 # ¿Qué ocurre si eliminamos la conversión a tipo de dato 'int' de la siguiente línea?
-def actualizacion_anno(agno):
+def actualizacion_anno():
     agno = int(input("Para preparar tu perfil, dime en qué año naciste. "))
     edad = 2017 - agno - 1
     return edad

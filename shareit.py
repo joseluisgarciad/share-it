@@ -1,38 +1,43 @@
 import time
 import os
 import shareit_def as fun_red
+import shareit_data as fun_files
 
 
 nombre: str
-edad: int
-estatura: float
-estatura_m: float
-estatura_cm: float
-num_amigos: int
-genero: str
-correo_electronico: str
-telefono: str
-pais_residencia: str
-ciudad: str
+edad: int = 0
+estatura: float = 0.0
+estatura_m: float = 0.0
+estatura_cm: float = 0.0
+num_amigos: int = 0
+amigos: list = []
+genero: str = ""
+correo_electronico: str = ""
+telefono: str = ""
+pais_residencia: str = ""
+ciudad: str = ""
 agno: int = 0
+
 
 fun_red.mostrar_logo()
 nombre = fun_red.actualizacion_nombre()
-edad = fun_red.actualizacion_anno(agno)
-estatura_m, estatura_cm = fun_red.actualizacion_estatura()
-num_amigos = fun_red.actualizacion_amigos()
-genero = fun_red.actualizar_genero()
-correo_electronico = fun_red.actualizar_correo()
-telefono = fun_red.actualizar_telefono()
-pais_residencia = fun_red.actualizar_pais()
-ciudad = fun_red.actualizar_ciudad()
+
+if fun_files.existe_fichero(nombre):
+    (nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo_electronico, telefono, pais_residencia, ciudad) = fun_files.leer_fichero_datos(nombre)
+else:
+    (edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo_electronico, telefono, pais_residencia, ciudad) = fun_red.actualizar_perfil()
+
 
 # Con los datos recolectados escribimos en pantalla un texto que resuma los datos que hemos obtenido
 print()
 print("Muy bien,", nombre, ". Entonces podemos crear un perfil con estos datos.")
 print("--------------------------------------------------")
-fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, genero,
-                       correo_electronico, telefono, pais_residencia, ciudad)
+fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo_electronico,
+                       telefono, pais_residencia, ciudad)
+print("Actualizando datos...")
+time.sleep(1)
+fun_files.grabar_fichero_datos(nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo_electronico,
+                               telefono, pais_residencia, ciudad)
 print("--------------------------------------------------")
 print("Gracias por la información. Esperamos que disfrutes con Mi Red")
 print()
@@ -79,16 +84,11 @@ while continuar:
         fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, genero,
                                correo_electronico, telefono, pais_residencia, ciudad)
     elif Opcion == "4":
-        fun_red.nombre = fun_red.actualizacion_nombre()
-        fun_red.edad = fun_red.actualizacion_anno(agno)
-        estatura_m, estatura_cm = fun_red.actualizacion_estatura()
-        num_amigos = fun_red.actualizacion_amigos()
-        genero = fun_red.actualizar_genero()
-        correo_electronico = fun_red.actualizar_correo()
-        telefono = fun_red.actualizar_telefono()
-        pais_residencia = fun_red.actualizar_pais()
-        ciudad = fun_red.actualizar_ciudad()
+        nombre, edad, estatura_m, estatura_cm, num_amigos, genero, correo_electronico, \
+        telefono, pais_residencia, ciudad = fun_red.actualizar_perfil()
 
+        fun_files.grabar_fichero_datos(nombre, edad, estatura_m, estatura_cm, num_amigos, genero,
+                               correo_electronico, telefono, pais_residencia, ciudad)
         fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, genero,
                                correo_electronico, telefono, pais_residencia, ciudad)
     elif Opcion == "0":
