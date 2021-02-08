@@ -1,5 +1,5 @@
-import time
 import os
+
 
 def mostrar_perfil(nombre,
                    edad,

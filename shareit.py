@@ -1,5 +1,4 @@
 import time
-import os
 import shareit_def as fun_red
 import shareit_data as fun_files
 
