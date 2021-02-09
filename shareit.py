@@ -20,6 +20,7 @@ agno: int = 0
 
 fun_red.mostrar_logo()
 nombre = fun_red.actualizacion_nombre()
+fun_red.mensaje_bienvenida(nombre)
 
 if fun_files.existe_fichero(nombre):
     (nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo_electronico, telefono, pais_residencia, ciudad) = fun_files.leer_fichero_datos(nombre)
@@ -57,6 +58,7 @@ while continuar:
     print("2 - Escribir Mensaje solo a algunos amigos")
     print("3 - Mostrar datos de perfil")
     print("4 - Actualizar el perfil de usuario")
+    print("5 - Cambiar de usuario")
     print("0 - Salir de Share-It")
     Opcion = str(input("Elije la opción"))
 
@@ -80,16 +82,30 @@ while continuar:
         fun_red.mostrar_mensaje_amigos(nombre, lamigos, mensaje)
         time.sleep(2)
     elif Opcion == "3":
-        fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, genero,
+        fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero,
                                correo_electronico, telefono, pais_residencia, ciudad)
+        fun_red.mensaje_bienvenida(nombre)
     elif Opcion == "4":
-        nombre, edad, estatura_m, estatura_cm, num_amigos, genero, correo_electronico, \
+        edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo_electronico, \
         telefono, pais_residencia, ciudad = fun_red.actualizar_perfil()
 
-        fun_files.grabar_fichero_datos(nombre, edad, estatura_m, estatura_cm, num_amigos, genero,
+        fun_files.grabar_fichero_datos(nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero,
                                correo_electronico, telefono, pais_residencia, ciudad)
-        fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, genero,
+        fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero,
                                correo_electronico, telefono, pais_residencia, ciudad)
+        fun_red.mensaje_bienvenida(nombre)
+    elif Opcion == "5":
+        temp_nombre = fun_red.actualizacion_nombre()
+        if fun_files.existe_fichero(temp_nombre):
+            nombre = temp_nombre
+            (nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo_electronico, telefono,
+             pais_residencia, ciudad) = fun_files.leer_fichero_datos(nombre)
+            fun_red.mostrar_perfil(nombre, edad, estatura_m, estatura_cm, num_amigos, amigos, genero,
+                                   correo_electronico, telefono, pais_residencia, ciudad)
+            fun_red.mensaje_bienvenida(nombre)
+        else:
+            print("No hay datos creados para el perfil: ", temp_nombre, "!!!!")
+            print("Continuamos con el perfil ya cargado (", nombre)
     elif Opcion == "0":
         print(Opcion)
         while salir:

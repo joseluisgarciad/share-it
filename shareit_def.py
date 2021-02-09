@@ -26,7 +26,6 @@ def mostrar_perfil(nombre,
 
 
 def actualizar_perfil():
-    #    nombre = actualizacion_nombre()
     edad = actualizacion_anno()
     (estatura_m, estatura_cm) = actualizacion_estatura()
     num_amigos = actualizacion_amigos()
@@ -37,6 +36,7 @@ def actualizar_perfil():
     pais = actualizar_pais()
     ciudad = actualizar_ciudad()
 
+
     return edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo, telefono, pais, ciudad
 
 
@@ -45,6 +45,12 @@ def mostar_mensaje_publico(nombre, mensaje):
     print("--------------------------------------------------")
     print(nombre, "dice:", mensaje)
     print("--------------------------------------------------")
+
+
+def mensaje_bienvenida(nombre):
+    print()
+    print("Hola ", nombre, ", bienvenido a Mi Red")
+    print()
 
 
 def mostrar_mensaje_amigos(nombre, amigos: list, mensaje):
@@ -104,10 +110,7 @@ def mostrar_logo():
 # Primera interacción. Solicitamos al usuario que ingrese su nombre,
 # y lo guardamos en una variable de tipo str
 def actualizacion_nombre():
-    nombre = input("Para empezar, dime como te llamas. ")
-    print()
-    print("Hola ", nombre, ", bienvenido a Mi Red")
-    print()
+    nombre = input("Introduce el nombre del perfil. ")
     return (nombre)
 
 

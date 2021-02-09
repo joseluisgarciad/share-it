@@ -12,16 +12,16 @@ def existe_fichero(nombre):
 def leer_fichero_datos(nombre):
     # with open(nombre.replace(" ", "").lower() + ".user") as f:
     f = open(nombre.replace(" ", "").lower() + ".user", "r")
-    edad = 0
-    est_m = 0.0
-    est_cm = 0.0
-    namigos = 0
+    edad: int = 0
+    est_m: float = 0.0
+    est_cm: float = 0.0
+    namigos: int = 0
     amigos = []
-    genero = ""
-    correo = ""
-    tlf = ""
-    pais = ""
-    ciudad = ""
+    genero: str = ""
+    correo: str = ""
+    tlf: str = ""
+    pais: str = ""
+    ciudad: str = ""
 
     for linea in f:
         if linea[0:2] == "01":
@@ -49,7 +49,7 @@ def leer_fichero_datos(nombre):
 
     f.close()
 
-    return nombre, edad, est_m, est_cm, namigos, amigos, genero, correo, tlf, pais, ciudad
+    return nombre , int(edad), int(est_m), int(est_cm), int(namigos), amigos, genero, correo, tlf, pais, ciudad
 
 
 def grabar_fichero_datos(nombre, edad, estatura_m, estatura_cm, num_amigos, amigos: list, genero, correo_electronico,
