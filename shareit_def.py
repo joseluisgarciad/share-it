@@ -1,5 +1,16 @@
 import os
 
+def bienvenida_usuario(usuario):
+    print()
+    print("Muy bien,", usuario, ". Entonces podemos crear un perfil con estos datos.")
+    print("--------------------------------------------------")
+
+
+def agradecimiento_usuario():
+    print("--------------------------------------------------")
+    print("Gracias por la información. Esperamos que disfrutes con Mi Red")
+    print()
+
 
 def mostrar_perfil(nombre,
                    edad,
@@ -16,7 +27,7 @@ def mostrar_perfil(nombre,
     print("Nombre:  ", nombre)
     print("Edad:    ", edad, "años")
     print("Estatura:", estatura_m, "metros y", estatura_cm, "centímetros")
-    print("Amigos:  ", num_amigos, " - ", amigos)
+    print("Amigos:  ", num_amigos, ": ", ",".join(amigos)) #num_amigos, " - ", amigos)
     print("Genero:  ", genero)
     print("Correo:  ", correo_electronico)
     print("Telefono:", telefono)
@@ -39,6 +50,19 @@ def actualizar_perfil():
 
     return edad, estatura_m, estatura_cm, num_amigos, amigos, genero, correo, telefono, pais, ciudad
 
+
+def mostrar_muro(muro:list):
+    print("(=========== ", len(muro), " mensajes ===========)")
+    for linea in muro:
+        print(linea)
+
+
+def publicar_mensaje(nombre, amigos, estado, muro: list):
+    muro.append(estado)
+    for amigo in amigos:
+        archivo = open(amigo.replace(" ", "").replace(",", "").lower() + ".user", "a")
+        archivo.write("12 Origen:" + nombre + " : " + estado + "\n")
+        archivo.close()
 
 def mostar_mensaje_publico(nombre, mensaje):
     print()
